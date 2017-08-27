@@ -1,6 +1,21 @@
 runtime: go
-api_version: go1
+api_version: go1.8
 
 handlers:
-- url: /.*
+- url: /testjig
   script: _go_app
+
+- url: /api/v1/.*
+  script: _go_app
+
+- url: /
+  static_files: static/index.html
+  upload: static/index.html
+
+- url: /(.*)
+  static_files: static/\1
+  upload: static
+
+- url: /css/(.*)
+  static_files: static/css/\1
+  upload: static/css
